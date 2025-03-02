@@ -2,9 +2,8 @@
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-
+import WhatsAppButton from '../components/ui/WhatsAppButton.astro';
+import FancyTransition from '../components/PageTransition.astro';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -13,50 +12,268 @@ import 'aos/dist/aos.css';
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-
 </head>
-	<style>
-		@keyframes pulse-slow {
-			0%, 100% {
-				opacity: 1;
-			}
-			50% {
-				opacity: 0.8;
-			}
-		}
-		.animate-pulse-slow {
-			animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-		}
-		
-		@keyframes float {
-			0% {
-				transform: translateY(0px);
-			}
-			50% {
-				transform: translateY(-10px);
-			}
-			100% {
-				transform: translateY(0px);
-			}
-		}
-		.animate-float {
-			animation: float 5s ease-in-out infinite;
-		}
-		
-		@keyframes fade-up {
-			0% {
-				opacity: 0;
-				transform: translateY(20px);
-			}
-			100% {
-				opacity: 1;
-				transform: translateY(0);
-			}
-		}
-		.animate-fade-up {
-			animation: fade-up 1s ease-out forwards;
-		}
-	</style>
+<FancyTransition />
+<style>
+    /* Animación de gradiente en movimiento */
+    @keyframes gradient-x {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    
+    .animate-gradient-x {
+        background-size: 200% 200%;
+        animation: gradient-x 15s ease infinite;
+    }
+    
+    /* Animación para texto con gradiente */
+    @keyframes gradient-text {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    
+    .animate-gradient-text {
+        background-size: 200% auto;
+        animation: gradient-text 5s ease-in-out infinite;
+    }
+    
+    /* Animación de aparición con desplazamiento hacia arriba */
+    @keyframes fade-in-up {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .animate-fade-in-up {
+        opacity: 0;
+        animation: fade-in-up 0.8s ease forwards;
+    }
+    
+    .delay-300 {
+        animation-delay: 0.3s;
+    }
+    
+    .delay-500 {
+        animation-delay: 0.5s;
+    }
+    
+    .delay-700 {
+        animation-delay: 0.7s;
+    }
+    
+    /* Animación para las partículas flotantes */
+    .particles-container {
+        pointer-events: none;
+    }
+    
+    .particle {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.5);
+        pointer-events: none;
+    }
+    
+    .particle-1 {
+        top: 20%;
+        left: 20%;
+        animation: float 20s linear infinite;
+    }
+    
+    .particle-2 {
+        top: 40%;
+        left: 80%;
+        width: 12px;
+        height: 12px;
+        animation: float 25s linear infinite;
+        animation-delay: -2s;
+    }
+    
+    .particle-3 {
+        top: 70%;
+        left: 35%;
+        width: 10px;
+        height: 10px;
+        animation: float 18s linear infinite;
+        animation-delay: -5s;
+    }
+    
+    .particle-4 {
+        top: 25%;
+        left: 75%;
+        animation: float 22s linear infinite;
+        animation-delay: -7s;
+    }
+    
+    .particle-5 {
+        top: 60%;
+        left: 10%;
+        width: 6px;
+        height: 6px;
+        animation: float 15s linear infinite;
+        animation-delay: -9s;
+    }
+    
+    /* Animación de flotación */
+    @keyframes float {
+        0% {
+            transform: translate(0, 0);
+        }
+        25% {
+            transform: translate(50px, 30px);
+        }
+        50% {
+            transform: translate(20px, 60px);
+        }
+        75% {
+            transform: translate(-40px, 20px);
+        }
+        100% {
+            transform: translate(0, 0);
+        }
+    }
+    
+    .animate-float {
+        animation: float 12s ease-in-out infinite;
+    }
+    
+    .animate-float-reverse {
+        animation: float 10s ease-in-out infinite reverse;
+    }
+    
+    .animate-float-slow {
+        animation: bounce 3s ease-in-out infinite;
+    }
+    
+    /* Animación para el texto brillante */
+    .glow-text {
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+        animation: glow 2s ease-in-out infinite alternate;
+    }
+    
+    @keyframes glow {
+        from {
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+        }
+        to {
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
+        }
+    }
+    
+    /* Animación para la flecha de desplazamiento */
+    .arrow-down {
+        animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+        0% {
+            transform: translateY(0);
+            opacity: 0.8;
+        }
+        50% {
+            transform: translateY(10px);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(0);
+            opacity: 0.8;
+        }
+    }
+    
+    /* Animación para el trazo SVG */
+    .svg-path-animate {
+        stroke-dasharray: 100;
+        stroke-dashoffset: 100;
+        animation: dash 15s linear infinite;
+    }
+    
+    @keyframes dash {
+        to {
+            stroke-dashoffset: 0;
+        }
+    }
+    
+    /* Animación de revelación de texto */
+    @keyframes reveal-text {
+        0% {
+            transform: translateY(20px);
+            opacity: 0;
+            filter: blur(15px);
+        }
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+            filter: blur(0);
+        }
+    }
+    
+    .animate-reveal-text {
+        animation: reveal-text 1.2s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+    }
+    
+    /* Mejoras en los botones */
+    .btn-primary, .btn-secondary {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .btn-primary:before, .btn-secondary:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: all 0.5s;
+    }
+    
+    .btn-primary:hover:before, .btn-secondary:hover:before {
+        left: 100%;
+    }
+    
+    /* Efecto de hover para las etiquetas */
+    .badge {
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+    }
+    
+    .badge:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background: rgba(255, 255, 255, 0.2);
+        transition: all 0.3s;
+        z-index: -1;
+    }
+    
+    .badge:hover:after {
+        height: 100%;
+    }
+    
+    /* Media queries para ajustes responsivos */
+    @media (max-width: 768px) {
+        .particle {
+            display: none;
+        }
+        
+        .animate-gradient-x {
+            animation-duration: 10s;
+        }
+    }
+</style>
 	<title>MedellinTN</title>
 
 </head>
@@ -65,52 +282,70 @@ import 'aos/dist/aos.css';
 </body>
 </html>
 <Navbar />
-<!-- Hero Section con Parallax y Animaciones -->
+<!-- Hero Section con Parallax y Animaciones Avanzadas -->
 <section class="hero relative min-h-screen flex flex-col justify-center items-center text-white text-center overflow-hidden">
-    <!-- Fondo con efecto parallax -->
+    <!-- Fondo con efecto parallax mejorado -->
     <div class="absolute inset-0 bg-cover bg-center bg-fixed z-0" style="background-image: url('../assets/OIP.jpeg');">
-        <div class="absolute inset-0 bg-gradient-to-r from-blue-900/70 via-purple-900/70 to-pink-900/70"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-900/70 via-purple-900/70 to-pink-900/70 animate-gradient-x"></div>
     </div>
 
-    <!-- Elementos decorativos flotantes con animación -->
-    <div class="absolute top-20 left-10 animate-pulse opacity-70 hidden md:block">
+    <!-- Partículas flotantes animadas -->
+    <div class="particles-container absolute inset-0 z-1">
+        <div class="particle particle-1"></div>
+        <div class="particle particle-2"></div>
+        <div class="particle particle-3"></div>
+        <div class="particle particle-4"></div>
+        <div class="particle particle-5"></div>
+    </div>
+
+    <!-- Elementos decorativos flotantes con animación mejorada -->
+    <div class="absolute top-20 left-10 animate-float opacity-70 hidden md:block">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" class="svg-path-animate" />
         </svg>
     </div>
-	<br></br>
-    <!-- Contenido del hero con animaciones -->
-    <div class="relative z-10 px-6 md:px-10 text-center animate__animated animate__fadeIn">
-        <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold drop-shadow-lg animate__animated animate__fadeInUp">
-            Bienvenido a <span class="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-orange-500 to-pink-500 animate-pulse">MedellinTN</span>
+
+    <!-- Elemento decorativo adicional -->
+    <div class="absolute bottom-20 right-10 animate-float-reverse opacity-70 hidden md:block">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" class="svg-path-animate" />
+        </svg>
+    </div>
+    
+    <br></br>
+    <!-- Contenido del hero con animaciones avanzadas -->
+    <div class="relative z-10 px-6 md:px-10 text-center animate-fade-in-up">
+        <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold drop-shadow-lg animate-reveal-text">
+            Bienvenido a <span class="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-orange-500 to-pink-500 animate-gradient-text">MedellinTN</span>
         </h1>
-        <p class="text-lg sm:text-xl md:text-2xl mt-6 mb-8 max-w-3xl mx-auto animate__animated animate__fadeInUp animate__delay-1s">
+        <p class="text-lg sm:text-xl md:text-2xl mt-6 mb-8 max-w-3xl mx-auto animate-fade-in-up delay-300">
             Vive la mejor experiencia de viajes en Medellín con nuestros paquetes exclusivos y personalizados.
         </p>
 
-        <div class="flex flex-wrap justify-center gap-2 mb-8 animate__animated animate__fadeInUp animate__delay-1s">
-            <span class="bg-yellow-400/90 text-black font-medium py-1 px-3 rounded-full text-sm shadow-md transition-all duration-300 transform hover:scale-110 hover:bg-yellow-500">Comuna 13</span>
-            <span class="bg-yellow-400/90 text-black font-medium py-1 px-3 rounded-full text-sm shadow-md transition-all duration-300 transform hover:scale-110 hover:bg-yellow-500">Guatapé</span>
-            <span class="bg-yellow-400/90 text-black font-medium py-1 px-3 rounded-full text-sm shadow-md transition-all duration-300 transform hover:scale-110 hover:bg-yellow-500">Parque Arví</span>
-            <span class="bg-white/30 backdrop-blur-sm text-white font-medium py-1 px-3 rounded-full text-sm shadow-md transition-all duration-300 transform hover:scale-110 hover:bg-white/50">+10 destinos</span>
+        <div class="flex flex-wrap justify-center gap-2 mb-8 animate-fade-in-up delay-500">
+            <span class="badge bg-yellow-400/90 text-black font-medium py-1 px-3 rounded-full text-sm shadow-md transition-all duration-300 transform hover:scale-110 hover:bg-yellow-500">Comuna 13</span>
+            <span class="badge bg-yellow-400/90 text-black font-medium py-1 px-3 rounded-full text-sm shadow-md transition-all duration-300 transform hover:scale-110 hover:bg-yellow-500">Guatapé</span>
+            <span class="badge bg-yellow-400/90 text-black font-medium py-1 px-3 rounded-full text-sm shadow-md transition-all duration-300 transform hover:scale-110 hover:bg-yellow-500">Parque Arví</span>
+            <span class="badge bg-white/30 backdrop-blur-sm text-white font-medium py-1 px-3 rounded-full text-sm shadow-md transition-all duration-300 transform hover:scale-110 hover:bg-white/50">+10 destinos</span>
         </div>
 
-        <div class="flex flex-col sm:flex-row gap-4 justify-center animate__animated animate__fadeInUp animate__delay-2s">
-            <a href="#destinos-destacados" class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105">
+        <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up delay-700">
+            <a href="#destinos-destacados" class="btn-primary bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
                 Explorar Destinos
             </a>
-            <a href="/contact" class="bg-transparent hover:bg-white/20 border-2 border-white text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105">Contáctanos Ahora</a>
+            <a href="/contact" class="btn-secondary bg-transparent hover:bg-white/20 border-2 border-white text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl">Contáctanos Ahora</a>
         </div>
     </div>
-<br></br><br></br><br>
-    <!-- Indicador de scroll con texto -->
-    <div class="absolute bottom-10 left-0 right-0 flex flex-col items-center animate-bounce">
-        <p class="text-white/80 text-sm mb-2">Descubre más</p>
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <br></br><br></br><br>
+    <!-- Indicador de scroll con texto y animación mejorada -->
+    <div class="absolute bottom-10 left-0 right-0 flex flex-col items-center animate-float-slow">
+        <p class="text-white/80 text-sm mb-2 glow-text">Descubre más</p>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 arrow-down" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
         </svg>
     </div>
 </section>
+
 
 <!-- Sección de Destinos Destacados con Tarjetas Interactivas -->
 <section id="destinos-destacados" class="py-16 bg-gradient-to-b from-gray-100 to-white">
@@ -126,7 +361,8 @@ import 'aos/dist/aos.css';
             <!-- Destino 1 -->
             <div class="group bg-white rounded-xl overflow-hidden shadow-lg transform transition-all duration-500 hover:scale-105 hover:shadow-2xl border border-transparent hover:border-yellow-400/30">
                 <div class="relative overflow-hidden">
-                    <img src="/images/comuna13.jpg" alt="Comuna 13" class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
+                    <img src="/Comuna 13.jpeg" alt="Comuna 13" class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
+
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                         <div class="p-6">
                             <span class="bg-yellow-400 text-black font-bold py-1 px-3 rounded-full text-sm mb-2 inline-block">Tour Popular</span>
@@ -177,7 +413,7 @@ import 'aos/dist/aos.css';
             <!-- Destino 2 -->
             <div class="group bg-white rounded-xl overflow-hidden shadow-lg transform transition-all duration-500 hover:scale-105 hover:shadow-2xl border border-transparent hover:border-yellow-400/30">
                 <div class="relative overflow-hidden">
-                    <img src="/images/guatape.jpg" alt="Guatapé" class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
+                    <img src="/guatape.jpg" alt="Guatapé" class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                         <div class="p-6">
                             <span class="bg-yellow-400 text-black font-bold py-1 px-3 rounded-full text-sm mb-2 inline-block">Excursión día completo</span>
@@ -228,7 +464,7 @@ import 'aos/dist/aos.css';
 			 <!-- Destino 3 -->
 <div class="group bg-white rounded-xl overflow-hidden shadow-lg transform transition-all duration-500 hover:scale-105 hover:shadow-2xl border border-transparent hover:border-yellow-400/30">
     <div class="relative overflow-hidden">
-        <img src="/images/parque-arvi.jpg" alt="Parque Arví" class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
+        <img src="/parquearvi.jpg" alt="Parque Arví" class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
         <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
             <div class="p-6">
                 <span class="bg-green-500 text-white font-bold py-1 px-3 rounded-full text-sm mb-2 inline-block">Ecoturismo</span>
@@ -292,7 +528,7 @@ import 'aos/dist/aos.css';
             <div class="bg-white p-8 rounded-xl shadow-lg">
                 <div class="flex items-center mb-6">
                     <div class="h-14 w-14 rounded-full overflow-hidden mr-4 border-2 border-yellow-400">
-                        <img src="/images/testimonios/persona1.jpg" alt="Cliente" class="w-full h-full object-cover">
+                        <img src="/Persona1.jpg" alt="Cliente" class="w-full h-full object-cover">
                     </div>
                     <div>
                         <h4 class="font-bold text-gray-800">Lorem Ipsum</h4>
@@ -323,7 +559,7 @@ import 'aos/dist/aos.css';
             <div class="bg-white p-8 rounded-xl shadow-lg">
                 <div class="flex items-center mb-6">
                     <div class="h-14 w-14 rounded-full overflow-hidden mr-4 border-2 border-yellow-400">
-                        <img src="/images/testimonios/persona2.jpg" alt="Cliente" class="w-full h-full object-cover">
+                        <img src="/Persona2.jpg" alt="Cliente" class="w-full h-full object-cover">
                     </div>
                     <div>
                         <h4 class="font-bold text-gray-800">Lorem Ipsum</h4>
@@ -354,7 +590,7 @@ import 'aos/dist/aos.css';
             <div class="bg-white p-8 rounded-xl shadow-lg">
                 <div class="flex items-center mb-6">
                     <div class="h-14 w-14 rounded-full overflow-hidden mr-4 border-2 border-yellow-400">
-                        <img src="/images/testimonios/persona3.jpg" alt="Cliente" class="w-full h-full object-cover">
+                        <img src="/Persona3.jpg" alt="Cliente" class="w-full h-full object-cover">
                     </div>
                     <div>
                         <h4 class="font-bold text-gray-800">Lorem Ipsum</h4>
@@ -396,7 +632,7 @@ import 'aos/dist/aos.css';
             <!-- Experiencia 1 -->
             <div class="relative group overflow-hidden rounded-xl shadow-lg bg-white">
                 <div class="absolute inset-0 bg-black opacity-50 group-hover:opacity-70 transition-opacity z-10"></div>
-                <img src="/images/experiencias/cafe.jpg" alt="Tour de Café" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                <img src="/TourCafe.jpg" alt="Tour de Café" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
                 <div class="absolute inset-0 flex flex-col justify-end p-6 text-white z-20">
                     <h3 class="text-xl font-bold mb-2 group-hover:text-yellow-400 transition-colors">Tour de Café Premium</h3>
                     <p class="text-sm text-white/90 mb-4">Visita una finca cafetera y aprende todo el proceso del mejor café del mundo con cata exclusiva</p>
@@ -408,7 +644,7 @@ import 'aos/dist/aos.css';
             <!-- Experiencia 2 -->
             <div class="relative group overflow-hidden rounded-xl shadow-lg bg-white">
                 <div class="absolute inset-0 bg-black opacity-50 group-hover:opacity-70 transition-opacity z-10"></div>
-                <img src="/images/experiencias/paragliding.jpg" alt="Parapente" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                <img src="/Parapente.jpg" alt="Parapente" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
                 <div class="absolute inset-0 flex flex-col justify-end p-6 text-white z-20">
                     <h3 class="text-xl font-bold mb-2 group-hover:text-yellow-400 transition-colors">Parapente sobre Medellín</h3>
                     <p class="text-sm text-white/90 mb-4">Sobrevuela el valle de Aburrá y disfruta de vistas panorámicas inolvidables</p>
@@ -420,7 +656,7 @@ import 'aos/dist/aos.css';
             <!-- Experiencia 3 -->
             <div class="relative group overflow-hidden rounded-xl shadow-lg bg-white">
                 <div class="absolute inset-0 bg-black opacity-50 group-hover:opacity-70 transition-opacity z-10"></div>
-                <img src="/images/experiencias/gastronomia.jpg" alt="Tour Gastronómico" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                <img src="RutaG.jpg" alt="Tour Gastronómico" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
                 <div class="absolute inset-0 flex flex-col justify-end p-6 text-white z-20">
                     <h3 class="text-xl font-bold mb-2 group-hover:text-yellow-400 transition-colors">Ruta Gastronómica</h3>
                     <p class="text-sm text-white/90 mb-4">Degusta los sabores auténticos de la cocina paisa con un chef local como guía</p>
@@ -432,7 +668,7 @@ import 'aos/dist/aos.css';
             <!-- Experiencia 4 -->
             <div class="relative group overflow-hidden rounded-xl shadow-lg bg-white">
                 <div class="absolute inset-0 bg-black opacity-50 group-hover:opacity-70 transition-opacity z-10"></div>
-                <img src="/images/experiencias/flores.jpg" alt="Feria de Flores" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                <img src="/FeriaF.jpg" alt="Feria de Flores" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
                 <div class="absolute inset-0 flex flex-col justify-end p-6 text-white z-20">
                     <h3 class="text-xl font-bold mb-2 group-hover:text-yellow-400 transition-colors">Feria de las Flores VIP</h3>
                     <p class="text-sm text-white/90 mb-4">Acceso exclusivo a eventos de la famosa Feria de las Flores con silleteros locales</p>
@@ -447,7 +683,9 @@ import 'aos/dist/aos.css';
         </div>
     </div>
 </section>
-
+<WhatsAppButton phoneNumber="5491112345678" message="Hola, estoy interesado en tu servicio" />
 
 <Footer />
-            
+
+  
+  

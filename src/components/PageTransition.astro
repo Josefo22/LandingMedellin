@@ -1,0 +1,432 @@
+<div id="page-transition" class="page-transition">
+  <div class="transition-content">
+    <div class="compass-container">
+      <div class="compass">
+        <div class="compass-inner">
+          <div class="compass-arrow"></div>
+          <div class="compass-center"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="loading-text">
+      <span>P</span>
+      <span>r</span>
+      <span>e</span>
+      <span>p</span>
+      <span>a</span>
+      <span>r</span>
+      <span>a</span>
+      <span>n</span>
+      <span>d</span>
+      <span>o</span>
+      <span>&nbsp;</span>
+      <span>t</span>
+      <span>u</span>
+      <span>&nbsp;</span>
+      <span>a</span>
+      <span>v</span>
+      <span>e</span>
+      <span>n</span>
+      <span>t</span>
+      <span>u</span>
+      <span>r</span>
+      <span>a</span>
+      <span>.</span>
+      <span>.</span>
+      <span>.</span>
+    </div>
+    
+    <div class="travel-icons">
+      <div class="icon icon-mountain"><i></i></div>
+      <div class="icon icon-palm"><i></i></div>
+      <div class="icon icon-camera"><i></i></div>
+      <div class="icon icon-map"><i></i></div>
+    </div>
+  </div>
+  
+  <!-- Elementos decorativos flotantes -->
+  <div class="floating-elements">
+    <div class="floating-element fe-1"></div>
+    <div class="floating-element fe-2"></div>
+    <div class="floating-element fe-3"></div>
+    <div class="floating-element fe-4"></div>
+    <div class="floating-element fe-5"></div>
+  </div>
+</div>
+
+<style>
+  /* Transición principal */
+  .page-transition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0f5e9c, #2e8b57, #1e3c72);
+    background-size: 400% 400%;
+    animation: gradientBG 8s ease infinite;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    overflow: hidden;
+  }
+
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .page-transition.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .transition-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    max-width: 600px;
+    gap: 40px;
+    padding: 20px;
+  }
+
+  /* Brújula animada */
+  .compass-container {
+    margin-bottom: 20px;
+  }
+
+  .compass {
+    width: 120px;
+    height: 120px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    padding: 10px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3),
+                inset 0 0 15px rgba(255, 255, 255, 0.2);
+    position: relative;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+
+  .compass-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle, #2a4b8d, #1a365d);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  .compass-arrow {
+    position: absolute;
+    width: 8px;
+    height: 60px;
+    background: linear-gradient(to bottom, #f83600, #fe8c00);
+    clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+    transform-origin: center bottom;
+    animation: rotate 3s ease-in-out infinite;
+  }
+
+  .compass-center {
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  }
+
+  @keyframes rotate {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(90deg); }
+    50% { transform: rotate(180deg); }
+    75% { transform: rotate(270deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+
+  /* Texto animado */
+  .loading-text {
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    height: 30px;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  }
+
+  .loading-text span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.3s forwards;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Animar cada letra con retraso */
+  .loading-text span:nth-child(1) { animation-delay: 0.1s; }
+  .loading-text span:nth-child(2) { animation-delay: 0.15s; }
+  .loading-text span:nth-child(3) { animation-delay: 0.2s; }
+  .loading-text span:nth-child(4) { animation-delay: 0.25s; }
+  .loading-text span:nth-child(5) { animation-delay: 0.3s; }
+  .loading-text span:nth-child(6) { animation-delay: 0.35s; }
+  .loading-text span:nth-child(7) { animation-delay: 0.4s; }
+  .loading-text span:nth-child(8) { animation-delay: 0.45s; }
+  .loading-text span:nth-child(9) { animation-delay: 0.5s; }
+  .loading-text span:nth-child(10) { animation-delay: 0.55s; }
+  .loading-text span:nth-child(11) { animation-delay: 0.6s; }
+  .loading-text span:nth-child(12) { animation-delay: 0.65s; }
+  .loading-text span:nth-child(13) { animation-delay: 0.7s; }
+  .loading-text span:nth-child(14) { animation-delay: 0.75s; }
+  .loading-text span:nth-child(15) { animation-delay: 0.8s; }
+  .loading-text span:nth-child(16) { animation-delay: 0.85s; }
+  .loading-text span:nth-child(17) { animation-delay: 0.9s; }
+  .loading-text span:nth-child(18) { animation-delay: 0.95s; }
+  .loading-text span:nth-child(19) { animation-delay: 1s; }
+  .loading-text span:nth-child(20) { animation-delay: 1.05s; }
+  .loading-text span:nth-child(21) { animation-delay: 1.1s; }
+  .loading-text span:nth-child(22) { animation-delay: 1.15s; }
+  .loading-text span:nth-child(23) { animation-delay: 1.3s; }
+  .loading-text span:nth-child(24) { animation-delay: 1.45s; }
+  .loading-text span:nth-child(25) { animation-delay: 1.6s; }
+
+  /* Iconos de viaje */
+  .travel-icons {
+    display: flex;
+    gap: 30px;
+    margin-top: 10px;
+  }
+
+  .icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    animation: iconPulse 2s infinite;
+    animation-delay: var(--delay, 0s);
+  }
+
+  .icon-mountain { --delay: 0s; }
+  .icon-palm { --delay: 0.5s; }
+  .icon-camera { --delay: 1s; }
+  .icon-map { --delay: 1.5s; }
+
+  @keyframes iconPulse {
+    0% { transform: scale(1); background: rgba(255, 255, 255, 0.15); }
+    50% { transform: scale(1.1); background: rgba(255, 255, 255, 0.25); }
+    100% { transform: scale(1); background: rgba(255, 255, 255, 0.15); }
+  }
+
+  /* Formas de los iconos con CSS */
+  .icon-mountain i {
+    width: 24px;
+    height: 24px;
+    background-color: white;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  }
+
+  .icon-palm i {
+    width: 24px;
+    height: 24px;
+    background-color: white;
+    clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  }
+
+  .icon-camera i {
+    width: 24px;
+    height: 18px;
+    background-color: white;
+    position: relative;
+    border-radius: 2px;
+  }
+
+  .icon-camera i::before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%;
+    top: 4px;
+    left: 7px;
+    box-shadow: 0 0 0 2px rgba(42, 75, 141, 0.8);
+  }
+
+  .icon-camera i::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 4px;
+    background-color: white;
+    border-radius: 2px;
+    top: -4px;
+    left: 8px;
+  }
+
+  .icon-map i {
+    width: 20px;
+    height: 24px;
+    background-color: white;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+  }
+
+  .icon-map i::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: rgba(42, 75, 141, 0.8);
+    border-radius: 50%;
+    top: 8px;
+    left: 6px;
+  }
+
+  /* Elementos flotantes decorativos */
+  .floating-elements {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+  }
+
+  .floating-element {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: float 10s infinite ease-in-out;
+  }
+
+  .fe-1 {
+    width: 80px;
+    height: 80px;
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+  }
+
+  .fe-2 {
+    width: 60px;
+    height: 60px;
+    top: 70%;
+    left: 80%;
+    animation-delay: -2s;
+  }
+
+  .fe-3 {
+    width: 40px;
+    height: 40px;
+    top: 30%;
+    left: 85%;
+    animation-delay: -5s;
+  }
+
+  .fe-4 {
+    width: 100px;
+    height: 100px;
+    top: 80%;
+    left: 20%;
+    animation-delay: -7s;
+  }
+
+  .fe-5 {
+    width: 50px;
+    height: 50px;
+    top: 15%;
+    left: 60%;
+    animation-delay: -3s;
+  }
+
+  @keyframes float {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(10px, 15px) rotate(5deg); }
+    50% { transform: translate(5px, -10px) rotate(10deg); }
+    75% { transform: translate(-10px, 5px) rotate(5deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const pageTransition = document.getElementById('page-transition');
+    
+    // Comprueba que pageTransition no sea null
+    if (!pageTransition) {
+      console.error('No se encontró el elemento de transición de página');
+      return;
+    }
+    
+    // Capturar todos los enlaces internos
+    document.querySelectorAll('a').forEach(link => {
+      // Solo para enlaces internos (del mismo dominio)
+      if (link.href && link.href.includes(window.location.origin) && !link.hasAttribute('data-no-transition')) {
+        link.addEventListener('click', (e) => {
+          const href = link.getAttribute('href');
+          
+          // No aplicar a enlaces de anclaje o con data-no-transition o si href es null
+          if (!href || href.startsWith('#') || link.hasAttribute('data-no-transition')) {
+            return;
+          }
+          
+          e.preventDefault();
+          
+          // Mostrar la animación de carga
+          pageTransition.classList.add('active');
+          
+          // Reiniciar animación de texto
+          const textSpans = pageTransition.querySelectorAll('.loading-text span');
+          textSpans.forEach((span, index) => {
+          (span as HTMLElement).style.animation = 'none';
+            setTimeout(() => {
+          (span as HTMLElement).style.animation = '';
+           }, 10);
+          });
+
+          
+          // Navegar a la nueva página después de un retraso
+          setTimeout(() => {
+            window.location.href = href;
+          }, 2000); // Aumentado para mostrar la animación completa
+        });
+      }
+    });
+    
+    // Ocultar la animación cuando la página ha cargado completamente
+    window.addEventListener('load', () => {
+      if (pageTransition) {
+        pageTransition.classList.remove('active');
+      }
+    });
+  });
+</script>
