@@ -9,33 +9,6 @@
       </div>
     </div>
     
-    <div class="loading-text">
-      <span>P</span>
-      <span>r</span>
-      <span>e</span>
-      <span>p</span>
-      <span>a</span>
-      <span>r</span>
-      <span>a</span>
-      <span>n</span>
-      <span>d</span>
-      <span>o</span>
-      <span>&nbsp;</span>
-      <span>t</span>
-      <span>u</span>
-      <span>&nbsp;</span>
-      <span>a</span>
-      <span>v</span>
-      <span>e</span>
-      <span>n</span>
-      <span>t</span>
-      <span>u</span>
-      <span>r</span>
-      <span>a</span>
-      <span>.</span>
-      <span>.</span>
-      <span>.</span>
-    </div>
     
     <div class="travel-icons">
       <div class="icon icon-mountain"><i></i></div>
@@ -97,16 +70,25 @@
     max-width: 600px;
     gap: 40px;
     padding: 20px;
+    position: relative;
   }
 
-  /* Brújula animada */
+  /* Brújula animada centrada con giro */
   .compass-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
   }
 
   .compass {
-    width: 120px;
-    height: 120px;
+    width: 150px;
+    height: 150px;
     background: rgba(255, 255, 255, 0.15);
     border-radius: 50%;
     padding: 10px;
@@ -122,6 +104,7 @@
     height: 100%;
     border-radius: 50%;
     background: radial-gradient(circle, #2a4b8d, #1a365d);
+    border: 4px solid #2a8b57;
     position: relative;
     display: flex;
     align-items: center;
@@ -131,12 +114,20 @@
 
   .compass-arrow {
     position: absolute;
-    width: 8px;
-    height: 60px;
-    background: linear-gradient(to bottom, #f83600, #fe8c00);
+    width: 6px;
+    height: 55px;
+    background: linear-gradient(to bottom, #ff5500, #ff7700);
     clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
     transform-origin: center bottom;
-    animation: rotate 3s ease-in-out infinite;
+    bottom: 50%;
+    left: calc(50% - 3px);
+    z-index: 2;
+    animation: rotateArrow 4s linear infinite;
+  }
+
+  @keyframes rotateArrow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
   }
 
   .compass-center {
@@ -146,14 +137,7 @@
     border-radius: 50%;
     position: absolute;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-  }
-
-  @keyframes rotate {
-    0% { transform: rotate(0deg); }
-    25% { transform: rotate(90deg); }
-    50% { transform: rotate(180deg); }
-    75% { transform: rotate(270deg); }
-    100% { transform: rotate(360deg); }
+    z-index: 3;
   }
 
   @keyframes pulse {
@@ -162,7 +146,7 @@
     100% { transform: scale(1); }
   }
 
-  /* Texto animado */
+  /* Texto animado - posicionado debajo de la brújula */
   .loading-text {
     color: white;
     font-size: 24px;
@@ -170,6 +154,11 @@
     letter-spacing: 1px;
     height: 30px;
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    bottom: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
   }
 
   .loading-text span {
@@ -213,11 +202,15 @@
   .loading-text span:nth-child(24) { animation-delay: 1.45s; }
   .loading-text span:nth-child(25) { animation-delay: 1.6s; }
 
-  /* Iconos de viaje */
+  /* Iconos de viaje - posicionados en la parte inferior */
   .travel-icons {
     display: flex;
     gap: 30px;
     margin-top: 10px;
+    position: absolute;
+    bottom: 15%;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .icon {
@@ -405,14 +398,13 @@
           pageTransition.classList.add('active');
           
           // Reiniciar animación de texto
-          const textSpans = pageTransition.querySelectorAll('.loading-text span');
-          textSpans.forEach((span, index) => {
-          (span as HTMLElement).style.animation = 'none';
+          const textSpans = pageTransition.querySelectorAll('.loading-text span') as NodeListOf<HTMLElement>;
+          textSpans.forEach(span => {
+            span.style.animation = 'none';
             setTimeout(() => {
-          (span as HTMLElement).style.animation = '';
-           }, 10);
+              span.style.animation = '';
+            }, 10);
           });
-
           
           // Navegar a la nueva página después de un retraso
           setTimeout(() => {
