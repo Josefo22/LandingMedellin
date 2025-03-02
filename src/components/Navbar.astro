@@ -1,0 +1,143 @@
+---
+const links = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Servicios', href: '/services' },
+  { name: 'Nosotros', href: '/about' },
+  { name: 'Contacto', href: '/contact' }
+];
+
+// Determinar la ruta actual para resaltar el enlace activo
+const currentPath = Astro.url.pathname;
+---
+
+<!-- Navbar Moderno con Animaciones, Responsividad y efectos de scroll -->
+<nav class="fixed top-0 left-0 w-full z-50 transition-all duration-300" id="mainNavbar">
+    <div class="container mx-auto px-4">
+      <div class="flex items-center justify-between py-4">
+        <!-- Logo con animación al hover -->
+        <a href="/" class="flex items-center space-x-2 group">
+          <div class="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 group-hover:rotate-12 group-hover:scale-110">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+            </svg>
+          </div>
+          <span class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500">MedellinTN</span>
+        </a>
+        
+        <!-- Menú de navegación - Desktop -->
+        <div class="hidden md:flex items-center space-x-8">
+          <ul class="flex space-x-6">
+            {links.map((link) => (
+              <li>
+                <a 
+                  href={link.href} 
+                  class={`relative font-medium transition-colors duration-300 py-2 group
+                         ${currentPath === link.href ? 'text-yellow-400' : 'text-white hover:text-yellow-400'}`}
+                >
+                  {link.name}
+                  <span class={`absolute bottom-0 left-0 h-0.5 bg-yellow-400 transition-all duration-300
+                               ${currentPath === link.href ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+                </a>
+              </li>
+            ))}
+          </ul>
+          
+          <!-- Botón de Reserva -->
+          <a href="/reserva" class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+            ¡Reserva Ahora!
+          </a>
+        </div>
+        
+        <!-- Botón menú hamburguesa - Mobile -->
+        <button class="md:hidden text-white focus:outline-none" id="menuToggleBtn" aria-label="Abrir menú">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Menú móvil (oculto por defecto) -->
+    <div class="bg-gradient-to-r from-blue-700/95 to-purple-600/95 backdrop-blur-md py-6 px-4 hidden md:hidden absolute w-full transform transition-all duration-300 opacity-0 -translate-y-10 shadow-lg" id="mobileMenuContainer">
+      <ul class="flex flex-col space-y-4">
+        {links.map((link) => (
+          <li>
+            <a 
+              href={link.href} 
+              class={`block font-medium py-3 border-b border-gray-700 transition-colors duration-300
+                     ${currentPath === link.href ? 'text-yellow-400' : 'text-white hover:text-yellow-400'}`}
+            >
+              {link.name}
+            </a>
+          </li>
+        ))}
+        <li class="pt-3">
+          <a href="/reserva" class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 px-5 rounded-full transition-all block text-center duration-300 transform hover:scale-105">
+            ¡Reserva Ahora!
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+<script>
+  // Asegurarnos de que el DOM esté completamente cargado
+  document.addEventListener('DOMContentLoaded', function() {
+    // Usar nombres únicos para evitar conflictos
+    const menuToggleBtn = document.getElementById('menuToggleBtn');
+    const mobileMenuContainer = document.getElementById('mobileMenuContainer');
+    const mainNavbar = document.getElementById('mainNavbar');
+    
+    // Verificar que los elementos existan antes de agregar event listeners
+    if (menuToggleBtn && mobileMenuContainer) {
+      // Función para alternar el menú móvil
+      menuToggleBtn.addEventListener('click', function() {
+        if (mobileMenuContainer.classList.contains('hidden')) {
+          // Mostrar menú
+          mobileMenuContainer.classList.remove('hidden', 'opacity-0', '-translate-y-10');
+          mobileMenuContainer.classList.add('opacity-100', 'translate-y-0');
+          
+          // Cambiar ícono de hamburguesa a X
+          menuToggleBtn.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          `;
+        } else {
+          // Ocultar menú
+          mobileMenuContainer.classList.add('opacity-0', '-translate-y-10');
+          
+          // Usar setTimeout para esperar a que termine la animación
+          setTimeout(() => {
+            mobileMenuContainer.classList.add('hidden');
+          }, 300);
+          
+          // Cambiar ícono de X a hamburguesa
+          menuToggleBtn.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          `;
+        }
+      });
+    }
+    
+    // Efectos de scroll para el navbar
+    if (mainNavbar) {
+      // Cambiar estilo del navbar al hacer scroll
+      const handleScroll = () => {
+        if (window.scrollY > 50) {
+          mainNavbar.classList.add('bg-gradient-to-r', 'from-blue-800/90', 'to-purple-700/90', 'backdrop-blur-md', 'shadow-lg');
+        } else {
+          mainNavbar.classList.remove('bg-gradient-to-r', 'from-blue-800/90', 'to-purple-700/90', 'backdrop-blur-md', 'shadow-lg');
+        }
+      };
+      
+      // Agregar event listener para el scroll
+      window.addEventListener('scroll', handleScroll);
+      
+      // Comprobar el scroll inicial
+      handleScroll();
+    }
+  });
+</script>

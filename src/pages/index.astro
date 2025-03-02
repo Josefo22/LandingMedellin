@@ -1,0 +1,453 @@
+---
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+</head>
+	<style>
+		@keyframes pulse-slow {
+			0%, 100% {
+				opacity: 1;
+			}
+			50% {
+				opacity: 0.8;
+			}
+		}
+		.animate-pulse-slow {
+			animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+		}
+		
+		@keyframes float {
+			0% {
+				transform: translateY(0px);
+			}
+			50% {
+				transform: translateY(-10px);
+			}
+			100% {
+				transform: translateY(0px);
+			}
+		}
+		.animate-float {
+			animation: float 5s ease-in-out infinite;
+		}
+		
+		@keyframes fade-up {
+			0% {
+				opacity: 0;
+				transform: translateY(20px);
+			}
+			100% {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+		.animate-fade-up {
+			animation: fade-up 1s ease-out forwards;
+		}
+	</style>
+	<title>MedellinTN</title>
+
+</head>
+<body>
+	
+</body>
+</html>
+<Navbar />
+<!-- Hero Section con Parallax y Animaciones -->
+<section class="hero relative min-h-screen flex flex-col justify-center items-center text-white text-center overflow-hidden">
+    <!-- Fondo con efecto parallax -->
+    <div class="absolute inset-0 bg-cover bg-center bg-fixed z-0" style="background-image: url('../assets/OIP.jpeg');">
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-900/70 via-purple-900/70 to-pink-900/70"></div>
+    </div>
+
+    <!-- Elementos decorativos flotantes con animación -->
+    <div class="absolute top-20 left-10 animate-pulse opacity-70 hidden md:block">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+        </svg>
+    </div>
+	<br></br>
+    <!-- Contenido del hero con animaciones -->
+    <div class="relative z-10 px-6 md:px-10 text-center animate__animated animate__fadeIn">
+        <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold drop-shadow-lg animate__animated animate__fadeInUp">
+            Bienvenido a <span class="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-orange-500 to-pink-500 animate-pulse">MedellinTN</span>
+        </h1>
+        <p class="text-lg sm:text-xl md:text-2xl mt-6 mb-8 max-w-3xl mx-auto animate__animated animate__fadeInUp animate__delay-1s">
+            Vive la mejor experiencia de viajes en Medellín con nuestros paquetes exclusivos y personalizados.
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-2 mb-8 animate__animated animate__fadeInUp animate__delay-1s">
+            <span class="bg-yellow-400/90 text-black font-medium py-1 px-3 rounded-full text-sm shadow-md transition-all duration-300 transform hover:scale-110 hover:bg-yellow-500">Comuna 13</span>
+            <span class="bg-yellow-400/90 text-black font-medium py-1 px-3 rounded-full text-sm shadow-md transition-all duration-300 transform hover:scale-110 hover:bg-yellow-500">Guatapé</span>
+            <span class="bg-yellow-400/90 text-black font-medium py-1 px-3 rounded-full text-sm shadow-md transition-all duration-300 transform hover:scale-110 hover:bg-yellow-500">Parque Arví</span>
+            <span class="bg-white/30 backdrop-blur-sm text-white font-medium py-1 px-3 rounded-full text-sm shadow-md transition-all duration-300 transform hover:scale-110 hover:bg-white/50">+10 destinos</span>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center animate__animated animate__fadeInUp animate__delay-2s">
+            <a href="#destinos-destacados" class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105">
+                Explorar Destinos
+            </a>
+            <a href="/contact" class="bg-transparent hover:bg-white/20 border-2 border-white text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105">Contáctanos Ahora</a>
+        </div>
+    </div>
+<br></br><br></br><br>
+    <!-- Indicador de scroll con texto -->
+    <div class="absolute bottom-10 left-0 right-0 flex flex-col items-center animate-bounce">
+        <p class="text-white/80 text-sm mb-2">Descubre más</p>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        </svg>
+    </div>
+</section>
+
+<!-- Sección de Destinos Destacados con Tarjetas Interactivas -->
+<section id="destinos-destacados" class="py-16 bg-gradient-to-b from-gray-100 to-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12 animate__animated animate__fadeIn">
+            <span class="inline-block bg-yellow-400/20 text-yellow-700 font-semibold py-1 px-4 rounded-full text-sm mb-4">EXPERIENCIAS INOLVIDABLES</span>
+            <h2 class="text-4xl font-bold text-gray-800 mb-4">Destinos Destacados</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Descubre los lugares más fascinantes de Medellín y sus alrededores para crear experiencias inolvidables</p>
+            <div class="w-24 h-1 bg-yellow-400 mx-auto mt-6"></div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Destino 1 -->
+            <div class="group bg-white rounded-xl overflow-hidden shadow-lg transform transition-all duration-500 hover:scale-105 hover:shadow-2xl border border-transparent hover:border-yellow-400/30">
+                <div class="relative overflow-hidden">
+                    <img src="/images/comuna13.jpg" alt="Comuna 13" class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="p-6">
+                            <span class="bg-yellow-400 text-black font-bold py-1 px-3 rounded-full text-sm mb-2 inline-block">Tour Popular</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center mb-3">
+                        <div class="text-yellow-400 mr-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                            </svg>
+                        </div>
+                        <span class="text-gray-500 text-sm">(128 reseñas)</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-yellow-500 transition-colors duration-300">Comuna 13</h3>
+                    <p class="text-gray-600 mb-4">Explora el arte urbano y la transformación social de este emblemático barrio de Medellín.</p>
+                    <div class="flex items-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span class="text-gray-500 text-sm">Duración: 4 horas</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-gray-900 font-bold">Desde $45 USD</span>
+                        <a href="/tours/comuna13" class="text-yellow-500 hover:text-yellow-700 font-semibold flex items-center group-hover:underline">
+                            Ver detalles
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transform transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Destino 2 -->
+            <div class="group bg-white rounded-xl overflow-hidden shadow-lg transform transition-all duration-500 hover:scale-105 hover:shadow-2xl border border-transparent hover:border-yellow-400/30">
+                <div class="relative overflow-hidden">
+                    <img src="/images/guatape.jpg" alt="Guatapé" class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="p-6">
+                            <span class="bg-yellow-400 text-black font-bold py-1 px-3 rounded-full text-sm mb-2 inline-block">Excursión día completo</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center mb-3">
+                        <div class="text-yellow-400 mr-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                            </svg>
+                        </div>
+                        <span class="text-gray-500 text-sm">(193 reseñas)</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-yellow-500 transition-colors duration-300">Guatapé y Piedra del Peñol</h3>
+                    <p class="text-gray-600 mb-4">Sube los 740 escalones para disfrutar de una de las vistas más espectaculares de Colombia.</p>
+                    <div class="flex items-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span class="text-gray-500 text-sm">Duración: 8-10 horas</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-gray-900 font-bold">Desde $75 USD</span>
+                        <a href="/tours/guatape" class="text-yellow-500 hover:text-yellow-700 font-semibold flex items-center group-hover:underline">
+                            Ver detalles
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transform transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+			 <!-- Destino 3 -->
+<div class="group bg-white rounded-xl overflow-hidden shadow-lg transform transition-all duration-500 hover:scale-105 hover:shadow-2xl border border-transparent hover:border-yellow-400/30">
+    <div class="relative overflow-hidden">
+        <img src="/images/parque-arvi.jpg" alt="Parque Arví" class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+            <div class="p-6">
+                <span class="bg-green-500 text-white font-bold py-1 px-3 rounded-full text-sm mb-2 inline-block">Ecoturismo</span>
+            </div>
+        </div>
+    </div>
+    <div class="p-6">
+        <div class="flex items-center mb-3">
+            <div class="text-yellow-400 mr-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                </svg>
+            </div>
+            <span class="text-gray-500 text-sm">(87 reseñas)</span>
+        </div>
+        <h3 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-yellow-500 transition-colors duration-300">Parque Arví</h3>
+        <p class="text-gray-600 mb-4">Conecta con la naturaleza en este extenso parque ecológico accesible en metrocable.</p>
+        <div class="flex items-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span class="text-gray-500 text-sm">Duración: 5-6 horas</span>
+        </div>
+        <div class="flex items-center justify-between">
+            <span class="text-gray-900 font-bold">Desde $35 USD</span>
+            <a href="/tours/parque-arvi" class="text-yellow-500 hover:text-yellow-700 font-semibold flex items-center group-hover:underline">
+                Ver detalles
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transform transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </a>
+        </div>
+    </div>
+ 			</div>
+	</div>
+	</div>
+</section>	
+<section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <span class="inline-block bg-yellow-400/20 text-yellow-700 font-semibold py-1 px-4 rounded-full text-sm mb-4">LO QUE DICEN NUESTROS VIAJEROS</span>
+            <h2 class="text-4xl font-bold text-gray-800 mb-4">Experiencias Auténticas</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Descubre lo que opinan quienes ya han vivido la magia de Medellín con nosotros</p>
+            <div class="w-24 h-1 bg-yellow-400 mx-auto mt-6"></div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Testimonio 1 -->
+            <div class="bg-white p-8 rounded-xl shadow-lg">
+                <div class="flex items-center mb-6">
+                    <div class="h-14 w-14 rounded-full overflow-hidden mr-4 border-2 border-yellow-400">
+                        <img src="/images/testimonios/persona1.jpg" alt="Cliente" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-800">Lorem Ipsum</h4>
+                        <p class="text-gray-500 text-sm">Medellin</p>
+                    </div>
+                </div>
+                <div class="text-yellow-400 mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                    </svg>
+                </div>
+                <p class="text-gray-700 italic">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies luctus, nisl nisl aliquet nisl, eget aliquet nisl nisl eu nisl."</p>
+            </div>
+            
+            <!-- Testimonio 2 -->
+            <div class="bg-white p-8 rounded-xl shadow-lg">
+                <div class="flex items-center mb-6">
+                    <div class="h-14 w-14 rounded-full overflow-hidden mr-4 border-2 border-yellow-400">
+                        <img src="/images/testimonios/persona2.jpg" alt="Cliente" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-800">Lorem Ipsum</h4>
+                        <p class="text-gray-500 text-sm">Medellin</p>
+                    </div>
+                </div>
+                <div class="text-yellow-400 mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                    </svg>
+                </div>
+				<p class="text-gray-700 italic">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies luctus, nisl nisl aliquet nisl, eget aliquet nisl nisl eu nisl."</p>
+            </div>
+            
+            <!-- Testimonio 3 -->
+            <div class="bg-white p-8 rounded-xl shadow-lg">
+                <div class="flex items-center mb-6">
+                    <div class="h-14 w-14 rounded-full overflow-hidden mr-4 border-2 border-yellow-400">
+                        <img src="/images/testimonios/persona3.jpg" alt="Cliente" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-800">Lorem Ipsum</h4>
+                        <p class="text-gray-500 text-sm">Medellin</p>
+                    </div>
+                </div>
+                <div class="text-yellow-400 mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                    </svg>
+                </div>
+				<p class="text-gray-700 italic">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies luctus, nisl nisl aliquet nisl, eget aliquet nisl nisl eu nisl."</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="py-20 bg-gradient-to-r from-yellow-400/10 to-orange-400/10">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-14">
+            <span class="inline-block bg-orange-400/20 text-orange-700 font-semibold py-1 px-4 rounded-full text-sm mb-4">MOMENTOS INOLVIDABLES</span>
+            <h2 class="text-4xl font-bold text-gray-800 mb-4">Experiencias Exclusivas</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Vive momentos únicos en Medellín con estas experiencias diseñadas para los viajeros más exigentes</p>
+            <div class="w-24 h-1 bg-orange-400 mx-auto mt-6"></div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Experiencia 1 -->
+            <div class="relative group overflow-hidden rounded-xl shadow-lg bg-white">
+                <div class="absolute inset-0 bg-black opacity-50 group-hover:opacity-70 transition-opacity z-10"></div>
+                <img src="/images/experiencias/cafe.jpg" alt="Tour de Café" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 flex flex-col justify-end p-6 text-white z-20">
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-yellow-400 transition-colors">Tour de Café Premium</h3>
+                    <p class="text-sm text-white/90 mb-4">Visita una finca cafetera y aprende todo el proceso del mejor café del mundo con cata exclusiva</p>
+                    <span class="text-yellow-400 font-bold">Desde $90 USD</span>
+                </div>
+                <div class="absolute top-4 right-4 bg-yellow-400 text-black font-bold px-3 py-1 rounded-full text-xs z-30">EXCLUSIVO</div>
+            </div>
+            
+            <!-- Experiencia 2 -->
+            <div class="relative group overflow-hidden rounded-xl shadow-lg bg-white">
+                <div class="absolute inset-0 bg-black opacity-50 group-hover:opacity-70 transition-opacity z-10"></div>
+                <img src="/images/experiencias/paragliding.jpg" alt="Parapente" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 flex flex-col justify-end p-6 text-white z-20">
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-yellow-400 transition-colors">Parapente sobre Medellín</h3>
+                    <p class="text-sm text-white/90 mb-4">Sobrevuela el valle de Aburrá y disfruta de vistas panorámicas inolvidables</p>
+                    <span class="text-yellow-400 font-bold">Desde $80 USD</span>
+                </div>
+                <div class="absolute top-4 right-4 bg-orange-500 text-white font-bold px-3 py-1 rounded-full text-xs z-30">AVENTURA</div>
+            </div>
+            
+            <!-- Experiencia 3 -->
+            <div class="relative group overflow-hidden rounded-xl shadow-lg bg-white">
+                <div class="absolute inset-0 bg-black opacity-50 group-hover:opacity-70 transition-opacity z-10"></div>
+                <img src="/images/experiencias/gastronomia.jpg" alt="Tour Gastronómico" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 flex flex-col justify-end p-6 text-white z-20">
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-yellow-400 transition-colors">Ruta Gastronómica</h3>
+                    <p class="text-sm text-white/90 mb-4">Degusta los sabores auténticos de la cocina paisa con un chef local como guía</p>
+                    <span class="text-yellow-400 font-bold">Desde $65 USD</span>
+                </div>
+                <div class="absolute top-4 right-4 bg-green-500 text-white font-bold px-3 py-1 rounded-full text-xs z-30">FOODIE</div>
+            </div>
+            
+            <!-- Experiencia 4 -->
+            <div class="relative group overflow-hidden rounded-xl shadow-lg bg-white">
+                <div class="absolute inset-0 bg-black opacity-50 group-hover:opacity-70 transition-opacity z-10"></div>
+                <img src="/images/experiencias/flores.jpg" alt="Feria de Flores" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 flex flex-col justify-end p-6 text-white z-20">
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-yellow-400 transition-colors">Feria de las Flores VIP</h3>
+                    <p class="text-sm text-white/90 mb-4">Acceso exclusivo a eventos de la famosa Feria de las Flores con silleteros locales</p>
+                    <span class="text-yellow-400 font-bold">Desde $120 USD</span>
+                </div>
+                <div class="absolute top-4 right-4 bg-purple-500 text-white font-bold px-3 py-1 rounded-full text-xs z-30">CULTURAL</div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-10">
+            <a href="/experiencias" class="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105">Ver todas las experiencias</a>
+        </div>
+    </div>
+</section>
+
+
+<Footer />
+            

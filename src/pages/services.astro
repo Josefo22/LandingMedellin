@@ -1,0 +1,356 @@
+---
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+	<title>Nuestros Servicios - MedellinTN</title>
+
+	<style>
+		@keyframes pulse-slow {
+			0%, 100% {
+				opacity: 1;
+			}
+			50% {
+				opacity: 0.8;
+			}
+		}
+		.animate-pulse-slow {
+			animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+		}
+		
+		@keyframes float {
+			0% {
+				transform: translateY(0px);
+			}
+			50% {
+				transform: translateY(-10px);
+			}
+			100% {
+				transform: translateY(0px);
+			}
+		}
+		.animate-float {
+			animation: float 5s ease-in-out infinite;
+		}
+		
+		@keyframes fade-up {
+			0% {
+				opacity: 0;
+				transform: translateY(20px);
+			}
+			100% {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+		.animate-fade-up {
+			animation: fade-up 1s ease-out forwards;
+		}
+
+		.service-card:hover .service-img {
+			transform: scale(1.05);
+		}
+		.service-img {
+			transition: transform 0.5s ease;
+		}
+	</style>
+</head>
+<body>
+	<Navbar />
+
+	<!-- Hero Section -->
+	<section class="relative py-20 px-4 bg-gradient-to-r from-blue-900 via-purple-900 to-pink-900 text-white text-center">
+		<div class="absolute top-10 right-10 animate-float opacity-70">
+			<svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+			</svg>
+		</div>
+		<div class="absolute bottom-10 left-10 animate-pulse-slow opacity-70">
+			<svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+			</svg>
+		</div>
+		
+		<div class="max-w-4xl mx-auto relative z-10 animate__animated animate__fadeIn">
+			<h1 class="text-5xl md:text-6xl font-extrabold mb-6">
+				<span class="inline-block">Nuestros</span>
+				<span class="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-orange-500 to-pink-500 inline-block animate-pulse-slow">Servicios</span>
+			</h1>
+			<p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Descubre nuestras experiencias diseñadas para mostrarte lo mejor de Medellín y sus alrededores.</p>
+			<div class="flex flex-wrap justify-center gap-3 mb-8">
+				<a href="#tours-ciudad" class="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white font-medium py-2 px-5 rounded-full text-sm transition-all">Tours por la Ciudad</a>
+				<a href="#excursiones" class="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white font-medium py-2 px-5 rounded-full text-sm transition-all">Excursiones</a>
+				<a href="#tours-privados" class="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white font-medium py-2 px-5 rounded-full text-sm transition-all">Tours Privados</a>
+				<a href="#experiencias" class="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white font-medium py-2 px-5 rounded-full text-sm transition-all">Experiencias</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- Introducción a los Servicios -->
+	<section class="py-16 px-4 bg-white">
+		<div class="max-w-6xl mx-auto text-center">
+			<div class="flex justify-center mb-8">
+				<span class="inline-block px-4 py-1 bg-yellow-400 text-black font-medium rounded-full text-sm">DESCUBRE MEDELLÍN</span>
+			</div>
+			<h2 class="text-3xl md:text-4xl font-bold mb-6">Diseñamos experiencias inolvidables</h2>
+			<p class="text-gray-600 max-w-3xl mx-auto mb-12">En MedellinTN nos especializamos en crear recorridos que muestran la verdadera esencia de Medellín y sus alrededores. Desde tours culturales hasta aventuras ecológicas, tenemos una experiencia para cada tipo de viajero.</p>
+			
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+				<div class="bg-gray-50 p-8 rounded-lg">
+					<div class="w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-4">
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+						</svg>
+					</div>
+					<h3 class="text-xl font-bold mb-3">Precios Accesibles</h3>
+					<p class="text-gray-600">Ofrecemos una excelente relación calidad-precio en todos nuestros tours y experiencias.</p>
+				</div>
+				
+				<div class="bg-gray-50 p-8 rounded-lg">
+					<div class="w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-4">
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+						</svg>
+					</div>
+					<h3 class="text-xl font-bold mb-3">Flexibilidad</h3>
+					<p class="text-gray-600">Adaptamos nuestros horarios y recorridos según tus necesidades y tiempo disponible.</p>
+				</div>
+				
+				<div class="bg-gray-50 p-8 rounded-lg">
+					<div class="w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-4">
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+						</svg>
+					</div>
+					<h3 class="text-xl font-bold mb-3">Guías Locales</h3>
+					<p class="text-gray-600">Nuestros guías son habitantes de la ciudad que conocen cada rincón y su historia.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Tours por la Ciudad -->
+	<section id="tours-ciudad" class="py-16 px-4 bg-gray-50">
+		<div class="max-w-6xl mx-auto">
+			<div class="text-center mb-16">
+				<span class="inline-block px-4 py-1 bg-yellow-400 text-black font-medium rounded-full text-sm mb-4">TOURS POR LA CIUDAD</span>
+				<h2 class="text-3xl md:text-4xl font-bold mb-6">Descubre los secretos de Medellín</h2>
+				<p class="text-gray-600 max-w-3xl mx-auto">Recorre los lugares más emblemáticos de la ciudad y conoce la historia de transformación que ha convertido a Medellín en un referente mundial.</p>
+			</div>
+			
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+				<!-- Tour 1 -->
+				<div class="bg-white rounded-xl shadow-md overflow-hidden service-card">
+					<div class="overflow-hidden h-56">
+						<img src="../assets/comuna13.jpg" alt="Tour Comuna 13" class="w-full h-full object-cover service-img" onerror="this.src='/api/placeholder/600/400'">
+					</div>
+					<div class="p-6">
+						<div class="flex justify-between items-center mb-4">
+							<span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">Tour Urbano</span>
+							<span class="text-yellow-500 font-bold">$50 USD</span>
+						</div>
+						<h3 class="text-xl font-bold mb-2">Tour Comuna 13</h3>
+						<p class="text-gray-600 mb-4">Un recorrido por el barrio que se transformó de ser uno de los más peligrosos a un ejemplo de renovación urbana a través del arte y la cultura.</p>
+						<div class="flex justify-between items-center">
+							<span class="flex items-center text-sm text-gray-500">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+								</svg>
+								4 horas
+							</span>
+							<a href="/tour-comuna13" class="text-yellow-500 font-medium hover:text-yellow-600 transition-colors">Ver detalles →</a>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Tour 2 -->
+				<div class="bg-white rounded-xl shadow-md overflow-hidden service-card">
+					<div class="overflow-hidden h-56">
+						<img src="../assets/centro-medellin.jpg" alt="Tour Centro Histórico" class="w-full h-full object-cover service-img" onerror="this.src='/api/placeholder/600/400'">
+					</div>
+					<div class="p-6">
+						<div class="flex justify-between items-center mb-4">
+							<span class="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">Cultural</span>
+							<span class="text-yellow-500 font-bold">$45 USD</span>
+						</div>
+						<h3 class="text-xl font-bold mb-2">Centro Histórico</h3>
+						<p class="text-gray-600 mb-4">Explora el corazón histórico de Medellín, visitando la Plaza Botero, el Museo de Antioquia y otros sitios emblemáticos.</p>
+						<div class="flex justify-between items-center">
+							<span class="flex items-center text-sm text-gray-500">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+								</svg>
+								3 horas
+							</span>
+							<a href="/tour-centro" class="text-yellow-500 font-medium hover:text-yellow-600 transition-colors">Ver detalles →</a>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Tour 3 -->
+				<div class="bg-white rounded-xl shadow-md overflow-hidden service-card">
+					<div class="overflow-hidden h-56">
+						<img src="../assets/el-poblado.jpg" alt="Tour El Poblado" class="w-full h-full object-cover service-img" onerror="this.src='/api/placeholder/600/400'">
+					</div>
+					<div class="p-6">
+						<div class="flex justify-between items-center mb-4">
+							<span class="bg-purple-100 text-purple-800 text-xs font-semibold px-3 py-1 rounded-full">Gastronómico</span>
+							<span class="text-yellow-500 font-bold">$60 USD</span>
+						</div>
+						<h3 class="text-xl font-bold mb-2">Ruta Gastronómica</h3>
+						<p class="text-gray-600 mb-4">Disfruta de un recorrido por los mejores restaurantes de El Poblado, probando especialidades locales y platos gourmet.</p>
+						<div class="flex justify-between items-center">
+							<span class="flex items-center text-sm text-gray-500">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+								</svg>
+								5 horas
+							</span>
+							<a href="/tour-gastronomico" class="text-yellow-500 font-medium hover:text-yellow-600 transition-colors">Ver detalles →</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="text-center mt-10">
+				<a href="/tours-ciudad" class="inline-block bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 px-8 rounded-full shadow-md transition-all duration-300 transform hover:scale-105">Ver todos los tours</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- Excursiones Destacadas -->
+	<section id="excursiones" class="py-16 px-4 bg-white">
+		<div class="max-w-6xl mx-auto">
+			<div class="text-center mb-16">
+				<span class="inline-block px-4 py-1 bg-yellow-400 text-black font-medium rounded-full text-sm mb-4">EXCURSIONES</span>
+				<h2 class="text-3xl md:text-4xl font-bold mb-6">Aventuras fuera de la ciudad</h2>
+				<p class="text-gray-600 max-w-3xl mx-auto">Explora los paisajes impresionantes y pueblos encantadores que rodean a Medellín.</p>
+			</div>
+			
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+				<!-- Excursión 1 -->
+				<div class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col md:flex-row service-card">
+					<div class="md:w-2/5 overflow-hidden">
+						<img src="../assets/guatape.jpg" alt="Excursión a Guatapé" class="w-full h-full object-cover service-img" onerror="this.src='/api/placeholder/400/500'">
+					</div>
+					<div class="md:w-3/5 p-6">
+						<div class="flex justify-between items-center mb-4">
+							<span class="bg-teal-100 text-teal-800 text-xs font-semibold px-3 py-1 rounded-full">Día Completo</span>
+							<span class="text-yellow-500 font-bold">$85 USD</span>
+						</div>
+						<h3 class="text-xl font-bold mb-2">Guatapé y Peñol</h3>
+						<p class="text-gray-600 mb-4">Visita el colorido pueblo de Guatapé y sube los 740 escalones de la Piedra del Peñol para disfrutar de vistas panorámicas espectaculares.</p>
+						<div class="flex justify-between items-center">
+							<span class="flex items-center text-sm text-gray-500">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+								</svg>
+								8-9 horas
+							</span>
+							<a href="/excursion-guatape" class="text-yellow-500 font-medium hover:text-yellow-600 transition-colors">Ver detalles →</a>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Excursión 2 -->
+				<div class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col md:flex-row service-card">
+					<div class="md:w-2/5 overflow-hidden">
+						<img src="../assets/arvi.jpg" alt="Parque Arví" class="w-full h-full object-cover service-img" onerror="this.src='/api/placeholder/400/500'">
+					</div>
+					<div class="md:w-3/5 p-6">
+						<div class="flex justify-between items-center mb-4">
+							<span class="bg-lime-100 text-lime-800 text-xs font-semibold px-3 py-1 rounded-full">Ecoturismo</span>
+							<span class="text-yellow-500 font-bold">$65 USD</span>
+						</div>
+						<h3 class="text-xl font-bold mb-2">Parque Arví</h3>
+						<p class="text-gray-600 mb-4">Escápate de la ciudad para disfrutar de la naturaleza en este parque ecológico. Incluye viaje en Metrocable con vistas panorámicas.</p>
+						<div class="flex justify-between items-center">
+							<span class="flex items-center text-sm text-gray-500">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+								</svg>
+								6 horas
+							</span>
+							<a href="/excursion-arvi" class="text-yellow-500 font-medium hover:text-yellow-600 transition-colors">Ver detalles →</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="text-center mt-10">
+				<a href="/excursiones" class="inline-block bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 px-8 rounded-full shadow-md transition-all duration-300 transform hover:scale-105">Ver todas las excursiones</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- Tours Privados -->
+	<section id="tours-privados" class="py-16 px-4 bg-gray-50">
+		<div class="max-w-6xl mx-auto">
+			<div class="flex flex-col md:flex-row items-center gap-12">
+				<div class="md:w-1/2">
+					<span class="inline-block px-4 py-1 bg-yellow-400 text-black font-medium rounded-full text-sm mb-4">EXPERIENCIA EXCLUSIVA</span>
+					<h2 class="text-3xl md:text-4xl font-bold mb-6">Tours Privados Personalizados</h2>
+					<p class="text-gray-600 mb-6">Diseñamos recorridos a medida según tus intereses, tiempo disponible y preferencias. Nuestros tours privados incluyen transporte exclusivo, guía dedicado y flexibilidad total en el itinerario.</p>
+					
+					<ul class="space-y-4 mb-8">
+						<li class="flex items-start">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+							</svg>
+							<span>Guía privado bilingüe (español/inglés)</span>
+						</li>
+						<li class="flex items-start">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+							</svg>
+							<span>Vehículo privado con aire acondicionado</span>
+						</li>
+						<li class="flex items-start">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+							</svg>
+							<span>Itinerario personalizable y flexible</span>
+						</li>
+						<li class="flex items-start">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+							</svg>
+							<span>Recogida y regreso a tu hotel o apartamento</span>
+						</li>
+					</ul>
+					
+					<a href="/tours-privados" class="inline-block bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 px-8 rounded-full shadow-md transition-all duration-300 transform hover:scale-105">Solicitar presupuesto</a>
+				</div>
+				
+				<div class="md:w-1/2">
+					<div class="relative">
+						<img src="../assets/tour-privado.jpg" alt="Tour Privado" class="rounded-xl shadow-xl" onerror="this.src='/api/placeholder/600/400'">
+						<div class="absolute -bottom-5 -right-5 bg-white p-4 rounded-lg shadow-lg">
+							<div class="flex items-center">
+								<div class="mr-4">
+									<svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+									</svg>
+								</div>
+								<div>
+									<p class="text-gray-800 font-medium">Desde</p>
+									<p class="text-2xl font-bold text-yellow-500">$120 USD</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+    <Footer />

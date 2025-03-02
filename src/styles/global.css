@@ -1,0 +1,65 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+html, body {
+  min-height: 100%; /* Asegura que el body siempre ocupe toda la altura */
+  margin: 0; /* Elimina márgenes por defecto */
+  padding: 0; 
+  display: flex; 
+  flex-direction: column; /* Ordena los elementos verticalmente */
+}
+
+main {
+  flex: 1; /* Empuja el footer hacia abajo ocupando todo el espacio disponible */
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  background-color: #f4f4f4; /* Fondo gris claro */
+  text-align: center;
+  padding: 2rem;
+}
+
+footer {
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  width: 100%; 
+  margin-top: auto; /* Esta línea empuja el footer hacia abajo */
+}
+
+html, body {
+  @apply h-screen flex flex-col;
+}
+
+
+footer {
+  @apply bg-black text-white text-center p-4 w-full;
+}
+
+
+.navbar {
+  @apply bg-black text-white py-4 shadow-md;
+}
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a2e; /* Fondo oscuro elegante */
+
+}
+
+::-webkit-scrollbar-thumb {
+  background: #7e22ce; /* Morado vibrante */
+  border-radius: 10px;
+  border: 2px solid #1a1a2e; /* Borde oscuro para contraste */
+  transition: background 0.3s ease; /* Suavidad al cambiar */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a855f7; /* Morado claro al hacer hover */
+}
