@@ -276,15 +276,19 @@ import FancyTransition from '../components/PageTransition.astro';
         </div>
         
         <!-- Mapa -->
-        <div class="mt-12">
-          <h2 class="text-2xl font-semibold mb-6 text-indigo-600">Encuéntranos</h2>
-          <div class="aspect-w-16 aspect-h-9 bg-gray-200 rounded-md overflow-hidden">
-            <!-- Aquí iría un mapa embebido -->
-            <div class="w-full h-64 bg-gray-300 flex items-center justify-center">
-              <p class="text-gray-600 text-center">Mapa de ubicación<br>Medellín, Colombia</p>
-            </div>
-          </div>
-        </div>
+<div class="mt-12">
+  <h2 class="text-2xl font-semibold mb-6 text-indigo-600 text-center">Encuéntranos</h2>
+  <div class="rounded-lg overflow-hidden shadow-lg">
+    <iframe 
+      class="w-full h-64 md:h-96 border-0"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15606.658255234654!2d-75.5635913290847!3d6.244287601448669!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e442829bf791b7b%3A0xb27c3b3a28eaa7b7!2sComuna%2013%2C%20Medell%C3%ADn%2C%20Antioquia%2C%20Colombia!5e0!3m2!1ses!2sco!4v1709478437345!5m2!1ses!2sco"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+</div>
+
         
         <!-- CTA Reserva -->
         <div class="mt-12 text-center">
